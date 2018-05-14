@@ -3,7 +3,7 @@ Belarus holidays (whith highlightning)
 
 # To highlight days use something like this
 ```elisp
-(defadvice my:calendar-generate-month
+(defadvice calendar-generate-month
 (after highlight-weekend-days (month year indent) activate)
 "Highlight weekend days. 
 If STRING contains `\(нерабочий\)' day is non-working.
