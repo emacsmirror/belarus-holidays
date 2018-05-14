@@ -9,7 +9,8 @@ Belarus holidays (whith highlightning)
 If STRING contains `\(нерабочий\)' day is non-working.
 If STRING contains `\(рабочий\)' day is working."
 (dotimes (i 31)
-  (let ((date (list month (1+ i) year)) (working nil) (non-working nil))
+  (let ((date (list month (1+ i) year)) (working nil) (non-working nil) 
+ (hlist nil))
      (setq hlist (calendar-check-holidays date))
         (dolist (cursor hlist)
             (if (string-match-p "\(рабочий\)" cursor)
