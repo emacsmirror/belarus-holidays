@@ -21,3 +21,5 @@ If STRING contains `\(рабочий\)' day is working."
                    (= (calendar-day-of-week date) 6)
 	           non-working))
 	    (calendar-mark-visible-date date 'holiday)))))
+
+![Screenshot](Screenshot_1.png)
