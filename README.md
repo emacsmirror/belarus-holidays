@@ -6,8 +6,8 @@ Belarus holidays (whith highlightning)
 (defadvice calendar-generate-month
 (after highlight-weekend-days (month year indent) activate)
 "Highlight weekend days. 
-If STRING contains `\(нерабочий\)' day is non-working.
-If STRING contains `\(рабочий\)' day is working."
+If STRING contains `\(нерабочы\)' day is non-working.
+If STRING contains `\(рабочы\)' day is working."
 (dotimes (i 31)
   (let ((date (list month (1+ i) year)) (working nil) (non-working nil) 
  (hlist nil))
