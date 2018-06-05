@@ -1,10 +1,58 @@
-;; Belarus holidays whith transfers
+;;; belarus-holidays.el --- Belarus holidays whith transfers
+;;; Commentary:
+;;; Provide Belarus holidays with working day transfers for calendar.el
+
+;;; License:
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Copyright 2018 Yauhen Makei
+
+;;; Author: Yauhen Makei <yauhen.makei@gmail.com>
+;;; Version: 1.0.0
+;;; Package: calendar
+;;; Package-Requires: ((calendar "calendar-functions")
+;;;                    (holidays "holiday functions for the calendar package"))
+
+;;; To highlight non-working days in calendar buffer u can use this code:
+;;;
+;;;(defadvice calendar-generate-month
+;;;(after highlight-weekend-days (month year indent) activate)
+;;;"Highlight weekend days.
+;;;If STRING contains `\(нерабочы\)' day is non-working.
+;;;If STRING contains `\(рабочы\)' day is working."
+;;;(dotimes (i 31)
+;;;  (let ((date (list month (1+ i) year)) (working nil) (non-working nil)
+;;; (hlist nil))
+;;;     (setq hlist (calendar-check-holidays date))
+;;;        (dolist (cursor hlist)
+;;;           (if (string-match-p "\(рабочы\)" cursor)
+;;;	        (setq working t))
+;;;            (if (string-match-p "\(нерабочы\)" cursor)
+;;;	        (setq non-working t)))
+;;;        (if (and (not working)
+;;;               (or (= (calendar-day-of-week date) 0)
+;;;                   (= (calendar-day-of-week date) 6)
+;;;	           non-working))
+;;;	    (calendar-mark-visible-date date 'holiday)))))
+
+;;; Code:
 (eval-when-compile
   (require 'calendar)
   (require 'holidays))
 
 (defvar holiday-belarus-holidays nil
-  "Праздники Беларуси")
+  "Святы Беларусі.")
 
 (setq holiday-belarus-holidays
   `(
@@ -40,7 +88,8 @@
     ))
 
 (defun holiday-eastern-etc (&optional n string)
-  "Date of Nth day after Orthodox Easter (named STRING), if visible in calendar window.
+  "Date of Nth day after Orthodox Easter (named STRING)
+, if visible in calendar window.
 Negative values of N are interpreted as days before Easter.
 STRING is used purely for display purposes.  The return value has
 the form ((MONTH DAY YEAR) STRING), where the date is that of the
@@ -64,11 +113,14 @@ URL: https://www.emacswiki.org/emacs/ukrainian-holidays.el"
 
 (defun holiday-once (month day year string)
   "Holiday on MONTH, DAY (Gregorian), YEAR called STRING.
-If MONTH, DAY, YEAR is visible, the value returned is the list (((MONTH DAY YEAR)
-STRING)). Returns nil if it is not visible in the current calendar window."
+If MONTH, DAY, YEAR is visible, the value returned
+is the list (((MONTH DAY YEAR) STRING)).
+Returns nil if it is not visible in the current calendar window."
   (let ((m displayed-month))
     (calendar-increment-month m year (- 11 month))
     (if (> m 9)
         (list (list (list month day year) string)))))
 
 (provide 'belarus-holidays)
+
+;;; belarus-holidays.el ends here
