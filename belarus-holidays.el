@@ -20,9 +20,7 @@
 
 ;;; Author: Yauhen Makei <yauhen.makei@gmail.com>
 ;;; Version: 1.0.0
-;;; Package: calendar
-;;; Package-Requires: ((calendar "calendar-functions")
-;;;                    (holidays "holiday functions for the calendar package"))
+;;; URL: http://bitbucket.org/EugeneMakei/belarus-holidays.el
 
 ;;; To highlight non-working days in calendar buffer u can use this code:
 ;;;
