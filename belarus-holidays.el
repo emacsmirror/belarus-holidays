@@ -1,6 +1,6 @@
 ;;; belarus-holidays.el --- Belarus holidays whith transfers
 ;;; Commentary:
-;;; Provide Belarus holidays with working day transfers for calendar.el
+;; Provide Belarus holidays with working day transfers for calendar.el
 
 ;;; License:
 ;; This program is free software: you can redistribute it and/or modify
@@ -16,76 +16,78 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-;;; Copyright 2018 Yauhen Makei
+;; Copyright 2018 Yauhen Makei
 
-;;; Author: Yauhen Makei <yauhen.makei@gmail.com>
-;;; Version: 1.0.0
-;;; URL: http://bitbucket.org/EugeneMakei/belarus-holidays.el
+;; Author: Yauhen Makei <yauhen.makei@gmail.com>
+;; Version: 1.0.0
+;; URL: http://bitbucket.org/EugeneMakei/belarus-holidays.el
 
-;;; To highlight non-working days in calendar buffer u can use this code:
-;;;
-;;;(defadvice calendar-generate-month
-;;;(after highlight-weekend-days (month year indent) activate)
-;;;"Highlight weekend days.
-;;;If STRING contains `\(нерабочы\)' day is non-working.
-;;;If STRING contains `\(рабочы\)' day is working."
-;;;(dotimes (i 31)
-;;;  (let ((date (list month (1+ i) year)) (working nil) (non-working nil)
-;;; (hlist nil))
-;;;     (setq hlist (calendar-check-holidays date))
-;;;        (dolist (cursor hlist)
-;;;           (if (string-match-p "\(рабочы\)" cursor)
-;;;	        (setq working t))
-;;;            (if (string-match-p "\(нерабочы\)" cursor)
-;;;	        (setq non-working t)))
-;;;        (if (and (not working)
-;;;               (or (= (calendar-day-of-week date) 0)
-;;;                   (= (calendar-day-of-week date) 6)
-;;;	           non-working))
-;;;	    (calendar-mark-visible-date date 'holiday)))))
+;;; Commentary:
+;; To highlight non-working days in calendar buffer u can use this code:
+
+;;(defadvice calendar-generate-month
+;;(after highlight-weekend-days (month year indent) activate)
+;;"Highlight weekend days.
+;;If STRING contains `\(нерабочы\)' day is non-working.
+;;If STRING contains `\(рабочы\)' day is working."
+;;(dotimes (i 31)
+;;  (let ((date (list month (1+ i) year)) (working nil) (non-working nil)
+;; (hlist nil))
+;;     (setq hlist (calendar-check-holidays date))
+;;        (dolist (cursor hlist)
+;;           (if (string-match-p "\(рабочы\)" cursor)
+;;	        (setq working t))
+;;            (if (string-match-p "\(нерабочы\)" cursor)
+;;	        (setq non-working t)))
+;;        (if (and (not working)
+;;               (or (= (calendar-day-of-week date) 0)
+;;                   (= (calendar-day-of-week date) 6)
+;;	           non-working))
+;;	    (calendar-mark-visible-date date 'holiday)))))
 
 ;;; Code:
+
 (eval-when-compile
   (require 'calendar)
   (require 'holidays))
 
-(defvar holiday-belarus-holidays nil
+(defvar belarus-holidays nil
   "Святы Беларусі.")
 
-(setq holiday-belarus-holidays
+(setq belarus-holidays
   `(
     (holiday-fixed 1 1 "Новы год (нерабочы)")
-    (holiday-once 1 2 2018 "Перанос рабочага дня (нерабочы)")
-    (holiday-once 1 20 2018 "Перанос рабочага дня (рабочы)")
+    (belarus-holidays-holiday-once 1 2 2018 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays-holiday-once 1 20 2018 "Перанос рабочага дня (рабочы)")
     (holiday-fixed 2 23 "Дзень абаронцаў Айчыны і Узброеных Сіл Рэспублікі Беларусь")
-    (holiday-once 3 3 2018 "Перанос рабочага дня (рабочы)")
+    (belarus-holidays-holiday-once 3 3 2018 "Перанос рабочага дня (рабочы)")
     (holiday-fixed 3 8 "Дзень жанчын (нерабочы)")
-    (holiday-once 3 9 2018 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays-holiday-once 3 9 2018 "Перанос рабочага дня (нерабочы)")
     (holiday-fixed 3 15 "Дзень Канстытуцыі")
     (holiday-fixed 4 2 "Дзень яднання народаў Беларусі і Расіі")
-    (holiday-once 4 14 2018 "Перанос рабочага дня (рабочы)")
-    (holiday-once 4 16 2018 "Перанос рабочага дня (нерабочы)")
-    (holiday-once 4 28 2018 "Перанос рабочага дня (рабочы)")
-    (holiday-once 4 30 2018 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays-holiday-once 4 14 2018 "Перанос рабочага дня (рабочы)")
+    (belarus-holidays-holiday-once 4 16 2018 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays-holiday-once 4 28 2018 "Перанос рабочага дня (рабочы)")
+    (belarus-holidays-holiday-once 4 30 2018 "Перанос рабочага дня (нерабочы)")
     (holiday-fixed 5 1 "Свята працы (нерабочы)")
     (holiday-fixed 5 9 "Дзень Перамогі (нерабочы)")
     (holiday-float 5 0 2 "Дзень Дзяржаўнага сцяга Рэспублікі Беларусь і Дзяржаўнага герба Рэспублікі Беларусь")
-    (holiday-once 7 2 2018 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays-holiday-once 7 2 2018 "Перанос рабочага дня (нерабочы)")
     (holiday-fixed 7 3 "Дзень Незалежнасці (Дзень Рэспублікі) (нерабочы)")
-    (holiday-once 7 7 2018 "Перанос рабочага дня (рабочы)")
+    (belarus-holidays-holiday-once 7 7 2018 "Перанос рабочага дня (рабочы)")
     (holiday-fixed 11 7 "Дзень Кастрычніцкай рэвалюцыі (нерабочы)")
-    (holiday-once 12 22 2018 "Перанос рабочага дня (рабочы)")
-    (holiday-once 12 24 2018 "Перанос рабочага дня (нерабочы)")
-    (holiday-once 12 29 2018 "Перанос рабочага дня (рабочы)")
-    (holiday-once 12 31 2018 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays-holiday-once 12 22 2018 "Перанос рабочага дня (рабочы)")
+    (belarus-holidays-holiday-once 12 24 2018 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays-holiday-once 12 29 2018 "Перанос рабочага дня (рабочы)")
+    (belarus-holidays-holiday-once 12 31 2018 "Перанос рабочага дня (нерабочы)")
     (holiday-fixed 1 7 "Ражджаство Хрыстова (праваслаўнае) (нерабочы)")
-    (holiday-easter-etc 0 "Вялікдзень (каталіцкі) (нерабочы)")
-    (holiday-eastern-etc 0 "Вялікдзень (праваслаўны) (нерабочы)")
-    (holiday-eastern-etc 9 "Радаўніца (нерабочы)")
+    (belarus-holidays-holiday-easter-etc 0 "Вялікдзень (каталіцкі) (нерабочы)")
+    (belarus-holidays-holiday-eastern-etc 0 "Вялікдзень (праваслаўны) (нерабочы)")
+    (belarus-holidays-holiday-eastern-etc 9 "Радаўніца (нерабочы)")
     (holiday-fixed 12 25 "Ражджаство Хрыстова (каталіцкае) (нерабочы)")
     ))
 
-(defun holiday-eastern-etc (&optional n string)
+(defun belarus-holidays-holiday-eastern-etc (&optional n string)
   "Date of Nth day after Orthodox Easter (named STRING)
 , if visible in calendar window.
 Negative values of N are interpreted as days before Easter.
@@ -95,13 +97,13 @@ Nth day before or after Easter.
 URL: https://www.emacswiki.org/emacs/ukrainian-holidays.el"
 (list (list
  (if (= n 0)
-  (easter-eastern displayed-year)
+  (belarus-holidays-easter-eastern displayed-year)
    (calendar-gregorian-from-absolute
     (+ n (calendar-absolute-from-gregorian
-	  (easter-eastern displayed-year)))))
+	  (belarus-holidays-easter-eastern displayed-year)))))
    string)))
 
-(defun easter-eastern (year)
+(defun belarus-holidays--easter-eastern (year)
   (let* ((x (% (+ (* (% year 19) 19) 15) 30))
 	 (day (- (+ x 10)
 		 (% (+ (/ (* year 5) 4) x) 7))))
@@ -109,7 +111,7 @@ URL: https://www.emacswiki.org/emacs/ukrainian-holidays.el"
 	(list 4 day year)
       (list 5 (- day 30) year))))
 
-(defun holiday-once (month day year string)
+(defun belarus-holidays--holiday-once (month day year string)
   "Holiday on MONTH, DAY (Gregorian), YEAR called STRING.
 If MONTH, DAY, YEAR is visible, the value returned
 is the list (((MONTH DAY YEAR) STRING)).
