@@ -107,6 +107,13 @@
     (belarus-holidays--holiday-eastern-etc 0 "Вялікдзень (праваслаўны) (нерабочы)")
     (belarus-holidays--holiday-eastern-etc 9 "Радаўніца (нерабочы)")
     (holiday-fixed 12 25 "Ражджаство Хрыстова (каталіцкае) (нерабочы)")
+    ;; updates for 2019
+    (belarus-holidays--holiday-once 5 4 2019 "Перанос рабочага дня (рабочы)")
+    (belarus-holidays--holiday-once 5 6 2019 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays--holiday-once 5 8 2019 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays--holiday-once 5 11 2019 "Перанос рабочага дня (рабочы)")
+    (belarus-holidays--holiday-once 11 8 2019 "Перанос рабочага дня (нерабочы)")
+    (belarus-holidays--holiday-once 11 16 2019 "Перанос рабочага дня (рабочы)")
     ))
 
 (defun belarus-holidays--holiday-eastern-etc (&optional n string)
